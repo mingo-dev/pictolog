@@ -1,0 +1,286 @@
+@CHARSET "UTF-8";
+
+/*기본 태그 설정*/
+html {
+	position: relative;
+	min-height: 100%;
+	font-family: "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3",
+		"Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", arial,
+		sans-serif;
+	color: rgb(33, 25, 34);
+	font-size: 12px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+@media screen and (min-width: 1080px) {
+	header {
+		position: fixed;
+		left: 0;
+		width: 100%;
+		clear: both;
+		top:0;
+		z-index: 1000 !important;
+		border-bottom: 1px solid #cfe5ec !important;
+	}
+	footer {
+		position:absolute;
+		bottom: 0px;
+		width: 100%;
+		height: 50px;
+		background-color: #000000;
+		top: 0;
+		z-index: 1000 !important;
+		border-bottom: 1px solid #cfe5ec !important;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	header {
+		display: none;
+	}
+	footer {
+		display: none;
+	}
+}
+
+ul {
+	list-style: none;
+	text-align: center;
+	padding: 0px;
+}
+
+.head-button {
+	display: inline;
+}
+
+.clearDiv {
+	clear: both;
+}
+
+.form-control:focus {
+	box-shadow: none !important;
+}
+/*테스트용 CSS 코드들*/
+.leftFloat {
+	float: left;
+}
+
+.rightFloat {
+	float: right;
+}
+
+.inlineDisplay {
+	display: inline;
+}
+
+/* Header CSS */
+.HeaderContent {
+	height: 61px;
+	position: relative;
+	display: inline;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	background-color: #FFFFFF;
+	z-index: 101;
+}
+
+.Button {
+	background: none;
+	border: none;
+	height: auto;
+	width: auto;
+	border-radius: 6px 0 0 6px;
+	padding: 20px 16px 20px 16px;
+}
+
+.logoBox {
+	width: 84px !important;
+	border: 10px; ! important;
+	border-right: 1px solid #cfe5ec !important;
+	padding: 10px 20px 14px 20px;
+}
+
+.search_icon {
+	padding: 10px;
+}
+
+.SearchBar {
+	display: flex;
+	position: relative;
+	min-width: 0 !important;
+	width: 100%;
+	outline-width: 0;
+	background-color: #cfe5ec;
+}
+
+.SearchBox {
+	font-size: 20px;
+	display: flex;
+	min-width: 0 !important;
+	width: 100%;
+	margin: 10px;
+	border-radius: 5px;
+	background-color: #cfe5ec;
+}
+
+.searchBoxBorder {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: flex;
+}
+
+.SearchForm {
+	position: relative;
+	display: flex;
+	width: 80%;
+}
+
+.SearchBar:focus {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom: 0px;
+}
+
+.LeftContent {
+	display: flex !important;
+	margin-right: 210px !important;
+	height: 61px;
+}
+
+.RightContent {
+	flex: none !important;
+	position: fixed;
+	right: 0;
+	width: 210px;
+	padding: 10px;
+}
+
+.button_box {
+	font-size: 20px;
+	display: inline-block;
+	margin: 10px;
+}
+
+.profile_img {
+	position: relative;
+	background-color: #fdd3d4;
+	width: 50px;
+	height: 50px;
+	top: -6px;
+}
+
+.searchBarArea {
+	width: auto;
+	height: 61px;
+}
+
+.logo {
+	width: 40px;
+	height: 40px;
+}
+
+/*모달 관련 css*/
+.modal-dialog {
+	overflow-y: initial !important
+}
+
+.modal-body {
+	height: 450px;
+	overflow-y: auto;
+}
+
+/* 다중 사용 태그 선언 */
+
+/* div 가운데 정렬*/
+.center {
+	margin: 0 auto;
+}
+
+/* up fix button style  */
+#fixButton {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	z-index: 300;
+	width: 40px;
+}
+
+.SearchBar {
+	border: 0;
+}
+
+.btn-primary {
+	color: #5C5C5C;
+	background-color: #F7CAC9;
+	border-color: #F7CAC9;
+	background-image: none;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+	.btn-primary.active, .open .dropdown-toggle.btn-primary {
+	color: #5C5C5C;
+	background-color: #F2A5A4;
+	border-color: #F7CAC9;
+}
+
+.btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary
+	{
+	background-image: none;
+}
+
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary,
+	.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover,
+	.btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus,
+	.btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active,
+	.btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active
+	{
+	background-color: #F7CAC9;
+	border-color: #F7CAC9;
+}
+
+.btn-primary .badge {
+	color: #F7CAC9;
+	background-color: #5C5C5C;
+}
+
+.btn-danger {
+	color: #5C5C5C;
+	background-color: #CFE5EC;
+	border-color: #CFE5EC;
+	background-image: none;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active,
+	.open .dropdown-toggle.btn-danger {
+	color: #5C5C5C;
+	background-color: #8FC9DB;
+	border-color: #CFE5EC;
+}
+
+.btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger
+	{
+	background-image: none;
+}
+
+.btn-danger.disabled, .btn-danger[disabled], fieldset[disabled] .btn-danger,
+	.btn-danger.disabled:hover, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger:hover,
+	.btn-danger.disabled:focus, .btn-danger[disabled]:focus, fieldset[disabled] .btn-danger:focus,
+	.btn-danger.disabled:active, .btn-danger[disabled]:active, fieldset[disabled] .btn-danger:active,
+	.btn-danger.disabled.active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger.active
+	{
+	background-color: #CFE5EC;
+	border-color: #CFE5EC;
+}
+
+.btn-danger .badge {
+	color: #CFE5EC;
+	background-color: #5C5C5C;
+}

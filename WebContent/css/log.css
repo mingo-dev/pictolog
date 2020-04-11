@@ -1,0 +1,497 @@
+@CHARSET "UTF-8";
+/*메인 페이지 CSS*/
+.Parallax {
+	position: relative;
+	opacity: 0.85;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.Parallax:hover {
+	opacity: 1;
+}
+
+input[type="text"] {
+	border: 0;
+}
+
+@media screen and (min-width: 1080px) {
+	.MiddleBox {
+		margin: 120px;
+		position: relative;
+		height: 200px;
+		clear: both;
+	}
+	.MainText {
+		font-size: 4.2em;
+	}
+	.SubText {
+		font-size: 1.8em;
+	}
+	#subtext2 {
+		display: none;
+	}
+	.MiddleBox_DragZone {
+		position: relative;
+		width: 150px;
+		height: 150px;
+		border: 10px dotted #FFFFFF;
+		margin: 0 auto;
+		padding: 10px;
+		border-radius: 20px;
+	}
+	.infoBox {
+		color: #FFFFFF;
+		position: relative;
+		display: inline;
+		width: 0;
+		height: 0;
+		bottom: -324px;
+		right: -10%;
+		z-index: 100;
+		text-shadow: #000000 1px 1px 1px;
+	}
+	#bg {
+		width: 100%;
+		height: 600px;
+		padding-top: 61px;
+		background-color: #FFF;
+		background-size: cover !important;
+	}
+	.modal-body {
+		position: relative;
+		height: 600px;
+		overflow-y: auto;
+	}
+	.profile_container {
+		position: relative;
+		float: right;
+		bottom: -50px;
+		left: -150px;
+		width: 0;
+		z-index: 100;
+	}
+	.profile_img {
+		width: 50px;
+		height: 50px;
+	}
+	.mapContainer {
+		position: fixed;
+		width: 40%;
+		height: 100%;
+		right: 0px;
+		left: auto;
+		background-color: #fdd3d4;
+	}
+	.leftSection {
+		position: relative;
+		width: 60%;
+		height: 100%;
+		padding-top: 61px;
+		padding-bottom: 50px;
+	}
+	.titleSection {
+		margin: 30px;
+	}
+	.title {
+		font-size: 2.7em;
+		font-weight: bold;
+		width: 80%;
+		position: relative;
+		display: inline-block;
+		top: 6px;
+		left: 20px;
+	}
+	.profileIcon {
+		float: left;
+		width: 10%;
+	}
+	.commentContainer {
+		margin: 2%;
+	}
+	.commentBox {
+		margin: 2%;
+	}
+	.comment {
+		display: block;
+		margin-left: 15%;
+		font-size: 1.2em;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.MiddleBox {
+		margin: 20%;
+		position: relative;
+		height: 50px;
+		clear: both;
+	}
+	.MainText {
+		font-size: 3.5em;
+	}
+	.SubText {
+		font-size: 1.8em;
+	}
+	#subtext1 {
+		display: none;
+	}
+	#subtext2 {
+		margin-top: 10%;
+	}
+	.MiddleBox_DragZone {
+		display: none;
+	}
+	.infoBox {
+		color: #FFFFFF;
+		position: relative;
+		display: inline;
+		width: 0;
+		height: 0;
+		bottom: -324px;
+		z-index: 100;
+		text-shadow: #000000 1px 1px 1px;
+		margin-left: 0%;
+	}
+	.infoBoxSearch {
+		margin-left: 12%;
+	}
+	.infoBoxMain {
+		left: 5%;
+	}
+	#bg {
+		width: 100%;
+		height: 600px;
+		padding-top: 61px;
+		background-color: #FFF;
+		background-size: cover !important;
+	}
+	.modal-body {
+		position: relative;
+		height: 400px;
+		overflow-y: auto;
+	}
+	.profile_container {
+		position: relative;
+		float: right;
+		right: 15%;
+		width: 0;
+		z-index: 100;
+		width: 0;
+		margin-top: 15%;
+	}
+	.profile_img {
+		width: 50px;
+		height: 50px;
+	}
+	.mapContainer {
+		display: none;
+	}
+	.leftSection {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding-top: 5%;
+		padding-bottom: 50px;
+	}
+	.titleSection {
+		margin: 10px;
+	}
+	.title {
+		font-size: 1.5em;
+		font-weight: bold;
+		width: 80%;
+		top: 6px;
+	}
+	.profileIcon {
+		float: left;
+		width: 10%;
+	}
+	.commentContainer {
+		margin-top: 5%;
+		margin-left: 2%;
+		width: 80%;
+		margin-left: 2%;
+	}
+	.commentBox {
+		margin: 2%;
+		margin-top: 4%;
+		margin-bottom: 5%;
+	}
+	.comment {
+		display: block;
+		margin-left: 22%;
+		font-size: 1.2em;
+	}
+}
+
+.MiddleBox_Text {
+	text-align: center;
+	font-weight: bold;
+	line-height: 60px;
+	color: #FFFFFF;
+}
+
+.Log_Container {
+	width: auto;
+	height: auto;
+}
+
+.Log {
+	position: relative;
+	display: flex;
+	max-width: 960px;
+	min-width: 106px;
+	height: 324px;
+	margin: 0 auto;
+}
+
+.Content_Text {
+	text-align: center;
+	font-weight: bold;
+	line-height: 30px;
+}
+
+.Log_Text_Container {
+	padding: 80px 0px 10px 0px;
+}
+
+.Log_Tag_Container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+.LogTag {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	color: #FFFFFF;
+	text-shadow: #000000 1px 1px 1px;
+}
+
+.Log_Section {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.Log_Title {
+	font-size: 2.8em;
+	padding-bottom: 20px;
+}
+
+.Log_Desc {
+	font-size: 1.6em;
+}
+
+.modal-dialog {
+	overflow-y: initial !important
+}
+
+.modal-body {
+	position: relative;
+	height: 600px;
+	overflow-y: auto;
+}
+
+.profile_img {
+	width: 50px;
+	height: 50px;
+}
+
+.infoBox {
+	color: #FFFFFF;
+	position: relative;
+	display: inline;
+	width: 0;
+	height: 0;
+	bottom: -324px;
+	right: -10%;
+	z-index: 100;
+	text-shadow: #000000 1px 1px 1px;
+}
+
+.infoBox_inner {
+	position: relative;
+	display: inline;
+	font-size: 25px;
+	margin-right: 5px;
+}
+
+.count {
+	position: relative;
+	display: inline;
+}
+
+.log_profile_img {
+	display: inline-block;
+	width: 80px;
+	height: 80px
+}
+
+.likeBtn {
+	position: relative;
+	float: right;
+	font-size: 3em;
+}
+
+.tagContainer {
+	padding: 2.5%;
+	float: right;
+}
+
+.tagBox {
+	display: inline-block;
+	position: relative;
+	padding: 5px;
+}
+
+.photoTagBox {
+	display: inline-block;
+	position: relative;
+	padding: 5px;
+}
+
+.tag {
+	width: 100px;
+}
+
+.searchBarArea {
+	width: auto;
+	height: 61px;
+}
+
+.text {
+	font-size: 1.4em;
+}
+
+.titleListner {
+	padding: 2.5%;
+}
+
+.photoListner {
+	padding: 2.5%;
+	clear: both;
+}
+
+.col-xs-6 {
+	padding: 0 !important;
+	border-radius: 0 !important;
+}
+
+.thumbnail {
+	margin-bottom: 0 !important;
+	padding: 0 !important;
+	opacity: 0.85;
+}
+
+.thumbnail:hover {
+	opacity: 1;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
+
+.commentButtons {
+	float: right;
+}
+
+.photoFrame {
+	width: 100%;
+}
+
+.photoImg {
+	width: 80%;
+	position: relative;
+	margin: 5% 10% 5% 10%;
+}
+
+.input-title-element {
+	border: 0;
+	padding: 2px;
+	background: #fff;
+	font-size: 3.3em;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.input-tag-element {
+	border: 0;
+	padding: 2px;
+	background: #fff;
+	font-size: 1.4em;
+	font-family: sans-serif;
+}
+
+.tmp-element {
+	visibility: hidden;
+	white-space: pre;
+}
+
+.likeBtnImg {
+	width: 40px;
+	height: 40px;
+}
+
+.logCommentInput {
+	width: 100%;
+	border: 0px !important;
+	background-color: #cfe5ec;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.logCommentInputBox {
+	position: relative;
+	display: inline-block;
+	border: 0px !important;
+	width: 90%;
+}
+
+.logCommentSubmitBox {
+	position: relative;
+	width: 10%;
+	height: 100%;
+	float: right;
+}
+
+.logCommentSubmit {
+	height: 34px;
+	border-radius: 0px 5px 5px 0px;
+}
+
+.photoCommentInput {
+	width: 100%;
+	border: 0px !important;
+	background-color: #cfe5ec;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.photoCommentInputBox {
+	position: relative;
+	display: inline-block;
+	border: 0px !important;
+	width: 90%;
+}
+
+.photoCommentSubmitBox {
+	position: relative;
+	width: 10%;
+	height: 100%;
+	float: right;
+}
+
+.photoCommentSubmit {
+	width: 100%;
+	height: 34px;
+	border-radius: 0px 5px 5px 0px;
+}
+
+.commentProfile {
+	width: 10px !important;
+}

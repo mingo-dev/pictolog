@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PageMapper">
+
+	<!-- 픽토로그(메인페이지) -->
+	<select id="selectMainTotal" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM log 
+			WHERE member_id = #{member_id}
+			OR member_id IN (SELECT following_you FROM follow WHERE follower_me = #{member_id}) 
+			OR log_tag_name_first IN (SELECT interesting_tag_name FROM interesting_tag WHERE member_id = #{member_id})
+			OR log_id IN (SELECT log_id FROM (SELECT rownum r, l.log_id FROM log l ORDER BY log_like_count desc) WHERE r < 100) 
+			OR log_id IN (SELECT log_id FROM (SELECT rownum r, l.log_id FROM log l ORDER BY photo_total_like_count desc) WHERE r < 100) 
+			ORDER BY log_regdate desc
+		]]>
+	</select>
+	
+	
+	<select id="selectMainLogList"  parameterType="String"  resultType="LogMain">
+		<![CDATA[
+			SELECT * FROM log 
+			WHERE member_id = #{member_id}
+			OR member_id IN (SELECT following_you FROM follow WHERE follower_me = #{member_id}) 
+			OR log_tag_name_first IN 
+				(SELECT interesting_tag_name FROM interesting_tag WHERE member_id = #{member_id}) 
+			OR log_id IN 
+				(SELECT log_id 
+				FROM (SELECT rownum r, l.log_id FROM log l ORDER BY log_like_count desc) 
+				WHERE r < 100) 
+			OR log_id IN 
+				(SELECT log_id 
+				FROM (SELECT rownum r, l.log_id FROM log l ORDER BY photo_total_like_count desc) 
+				WHERE r < 100) 
+			ORDER BY log_regdate desc
+		]]>
+	</select>
+	
+	<!-- 멤버뷰(개인페이지) -->
+	<select id="selectPrivateSelfTotal" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM log WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="selectPrivateSelfLogList" parameterType="String" resultType="LogMain">
+		SELECT * FROM log WHERE member_id = #{member_id} ORDER BY log_regdate desc
+	</select>
+	
+	<select id="selectPrivateOtherTotal" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM log WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="selectPrivateOtherLogList" parameterType="String" resultType="LogMain">
+		SELECT * FROM log WHERE member_id = #{member_id}ORDER BY log_regdate desc
+	</select>
+	
+	<select id="selectPrivateSelfPhotoList" parameterType="String" resultType="LogView">
+		SELECT * FROM log WHERE member_id = #{member_id} ORDER BY log_regdate desc
+	</select>
+
+	<select id="selectPrivateOtherPhotoList" parameterType="String" resultType="LogView">
+		SELECT * FROM log WHERE member_id = #{member_id} ORDER BY log_regdate desc
+	</select>
+	
+	<!-- 검색 -->
+	<select id="selectLogTotalByTag" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM log WHERE log_id IN (SELECT log_id FROM log_tag WHERE log_tag_name like '%'||#{tagKeyword}||'%')
+	</select>
+	
+	<select id="selectLogMainListByTag" parameterType="String" resultType = "LogMain">
+		SELECT * FROM log WHERE log_id IN (SELECT log_id FROM log_tag WHERE log_tag_name like '%'||#{tagKeyword}||'%')
+	</select>
+	
+	<select id="selectPhotoTotalByTag" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM photo WHERE photo_id IN (SELECT photo_id FROM photo_tag WHERE photo_tag_name LIKE '%'||#{tagName}||'%')
+	</select>
+	
+	<select id="selectPhotoListByTag" parameterType="String" resultType="Photo">
+		SELECT * FROM photo WHERE photo_id IN (SELECT photo_id FROM photo_tag WHERE photo_tag_name LIKE '%'||#{tagName}||'%')
+	</select>
+	
+	<!-- 검색(멤버뷰용) -->
+	<select id="selectLogTotalByTagForMemberView" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM log 
+		WHERE log_id IN (SELECT log_id FROM log_tag WHERE log_tag_name like '%'||#{searchTag}||'%') 
+		AND member_id = #{member_id}
+	</select>
+	
+	<select id="selectLogMainListByTagForMemberView" parameterType="map" resultType = "LogMain">
+		SELECT * FROM log 
+		WHERE log_id IN (SELECT log_id FROM log_tag WHERE log_tag_name like '%'||#{searchTag}||'%') 
+		AND member_id = #{member_id} 
+		ORDER BY log_regdate desc
+	</select>
+	
+	<select id="selectPhotoTotalByTagForMemberView" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM photo 
+		WHERE photo_id IN (SELECT photo_id FROM photo_tag WHERE photo_tag_name LIKE '%'||#{searchTag}||'%' AND member_id = #{member_id}) 
+	</select>
+	
+	<select id="selectPhotoListByTagForMemberView" parameterType="map" resultType="Photo">
+		SELECT * FROM photo 
+		WHERE photo_id IN (SELECT photo_id FROM photo_tag WHERE photo_tag_name LIKE '%'||#{searchTag}||'%' AND member_id = #{member_id}) 
+		ORDER BY photo_regdate desc
+	</select>
+	
+</mapper>

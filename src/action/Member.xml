@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="member" namespace="/" extends="default, json-default">
+
+		<action name="join" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="join">
+			<result type="json"></result>
+		</action>
+
+		<action name="duplicateIdCheck" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="idCheck">
+			<result type="json"></result>
+		</action>
+
+		<action name="duplicateEmailCheck" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="emailCheck">
+			<result type="json"></result>
+		</action>
+
+		<action name="login" class="pictolog.action.MemberAction"
+			method="login">
+			<result name="success" type="redirect">/pictolog.action</result>
+			<result name="error" type="redirect">/findIdPw.action</result>
+		</action>		
+
+		<action name="logout" class="pictolog.action.MemberAction"
+			method="logout">
+			<result name="success" type="redirect">loginForm.action</result>
+		</action>
+
+		<action name="findId" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="findId">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+
+		<action name="findPassword" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="findPassword">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+
+		<!-- memberSetting 페이지 -->
+		<action name="updateMemberSetting" class="pictolog.action.MemberAction"
+			method="updateMemberSetting">
+			<result type="redirect">/memberSetting.action</result>
+		</action>
+
+		<!--follow 부분 -->
+		<action name="insertFollowing" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="insertFollowing">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+
+		<action name="deleteFollowing" class="pictolog.ajaxAction.MemberAjaxAction"
+			method="deleteFollowing">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		
+		<action name="checkFollowing" class="pictolog.ajaxAction.MemberAjaxAction" method="checkFollowing">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		
+		<action name="selectFollowingList" class="pictolog.ajaxAction.MemberAjaxAction" method="selectFollowingList">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		
+		<action name="selectFollowerList" class="pictolog.ajaxAction.MemberAjaxAction" method="selectFollowerList">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		
+		<action name="selectInfoList" class="pictolog.ajaxAction.MemberAjaxAction" method="selectInfoList">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+
+	</package>
+</struts>

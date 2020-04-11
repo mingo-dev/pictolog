@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="log" namespace="/" extends="default, json-default">
+
+		<action name="createLog" class="pictolog.ajaxAction.CreateLogAjaxAction">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="deleteLog" class="pictolog.action.LogAction" method="deleteLog">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="sendTestPhotos" class="pictolog.ajaxAction.CreateLogAjaxAction">
+			<result type="json"></result>
+		</action>
+
+		<action name="addLogComment" class="pictolog.ajaxAction.LogAjaxAction"
+			method="addLogComment">
+			<interceptor-ref name="LoginInterceptorStack" />
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+			<result name="empty" type="json" />
+		</action>
+
+		<action name="deleteLogComment" class="pictolog.ajaxAction.LogAjaxAction"
+			method="deleteLogComment">
+			<interceptor-ref name="LoginInterceptorStack" />
+			<result type="json"></result>
+		</action>
+
+		<action name="privateLogView" class="pictolog.action.LogAction"
+			method="privatePageLogLoad">
+			<result type="json" />
+		</action>
+
+		<action name="likeLog" class="pictolog.ajaxAction.LogAjaxAction"
+			method="doLogLike">
+			<interceptor-ref name="LoginInterceptorStack" />
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="dislikeLog" class="pictolog.ajaxAction.LogAjaxAction"
+			method="cancelLogLike">
+			<interceptor-ref name="LoginInterceptorStack" />
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="updateLogTitle" class="pictolog.ajaxAction.LogAjaxAction" method="updateLogTitle">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="updateLogTag" class="pictolog.ajaxAction.LogAjaxAction" method="updateLogTag">
+			<result name="success" type="json"/>
+		</action>
+	</package>
+</struts>

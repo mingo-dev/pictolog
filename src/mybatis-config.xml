@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- DB접속정보 및 TypeAlias Setting -->	
+	<properties resource="db.properties" />
+	 	
+	<typeAliases>
+		<typeAlias type="pictolog.vo.PhotoTag" alias="PhotoTag"/>
+		<typeAlias type="pictolog.vo.Follow" alias="Follow"/>
+		<typeAlias type="pictolog.vo.Log" alias="Log"/>
+		<typeAlias type="pictolog.vo.LogTag" alias="LogTag"/>
+		<typeAlias type="pictolog.vo.LogComment" alias="LogComment"/>
+		<typeAlias type="pictolog.vo.LogLike" alias="LogLike"/>
+		<typeAlias type="pictolog.vo.Member" alias="Member"/>
+		<typeAlias type="pictolog.vo.Photo" alias="Photo"/>
+		<typeAlias type="pictolog.vo.PhotoComment" alias="PhotoComment"/>
+		<typeAlias type="pictolog.vo.PhotoTag" alias="PhotoTag"/>
+		<typeAlias type="pictolog.vo.PhotoLike" alias="PhotoLike"/>
+		<typeAlias type="pictolog.vo.InterestingTag" alias="InterestingTag"/>
+		<typeAlias type="pictolog.vo.LogView" alias="LogView"/>
+		<typeAlias type="pictolog.vo.LogMain" alias="LogMain"/>
+		<typeAlias type="pictolog.vo.Info" alias="Info"/>
+	</typeAliases>
+	
+	
+	<!-- DB접속 정보 셋팅 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 매퍼 파일 포함 -->
+	<mappers>
+		<mapper resource = "mapper/LogMapper.xml" />
+		<mapper resource = "mapper/MemberMapper.xml" />
+		<mapper resource = "mapper/PhotoMapper.xml" />
+		<mapper resource = "mapper/PageMapper.xml" />
+		<mapper resource = "mapper/DummyMapper.xml" />
+	</mappers>
+	
+</configuration>

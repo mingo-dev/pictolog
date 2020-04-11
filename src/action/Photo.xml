@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="photo" namespace="/" extends="default, json-default">
+    	<action name="selectPhoto" class="pictolog.ajaxAction.PhotoAjaxAction" method="selectPhoto">
+    		<result name="success" type="json"></result>
+    		<result name="error" type="json"></result>
+    	</action>
+    	
+    	<action name="insertPhotoComment" class="pictolog.ajaxAction.PhotoAjaxAction" method="insertPhotoComment">
+    		<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+    	</action>
+    	
+		<action name="deletePhotoComment" class="pictolog.ajaxAction.PhotoAjaxAction" method="deletePhotoComment">
+    		<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+    	</action>
+    	
+    	<action name="doPhotoLike" class="pictolog.ajaxAction.PhotoAjaxAction" method="doPhotoLike">
+    		<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+    	</action>
+    	
+    	<action name="cancelPhotoLike" class="pictolog.ajaxAction.PhotoAjaxAction" method="cancelPhotoLike">
+    		<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+    	</action>
+    	
+    	<action name="alterPhotoLocation" class="pictolog.ajaxAction.PhotoAjaxAction" method="alterPhotoLocation">
+			<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+		</action>
+		
+		<action name="deletePhoto" class="pictolog.ajaxAction.PhotoAjaxAction" method="deletePhoto">
+			<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+		</action>
+		
+		<action name="updatePhotoTag" class="pictolog.ajaxAction.PhotoAjaxAction" method="updatePhotoTag">
+			<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+		</action>
+	</package>
+</struts>

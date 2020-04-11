@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DummyMapper">
+<!-- photo -->
+	<insert id="insertTag" parameterType="Photo">
+		INSERT INTO photo_tag VALUES (photo_tag_seq.nextval, 'search', '1111', #{photo_id})
+	</insert>
+
+	<select id="selectAllPhotoList" resultType="Photo">
+		SELECT * FROM photo
+	</select>
+	
+	<update id="updateGPS" parameterType="Photo">
+		UPDATE photo SET exif_location = #{exif_location} WHERE photo_id = #{photo_id}
+	</update>
+		
+<!-- log -->
+	<insert id="insertLogTag" parameterType="String">
+		INSERT INTO log_tag VALUES (log_tag_seq.nextval, 'search', #{log_id}, '1111', 9)
+	</insert>
+	
+	<select id="selectAllLogIdList" resultType="String">
+		SELECT log_id from log
+	</select>
+</mapper>

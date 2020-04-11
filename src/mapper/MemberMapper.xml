@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+<!-- 멤버 -->
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO member
+		(member_id, email, password, profile_photo, age, gender)
+		VALUES
+		(#{member_id}, #{email}, #{password}, 'img/noImage.jpg', #{age}, #{gender})
+	</insert>
+
+	<select id="selectMember" parameterType="String" resultType="Member">
+		SELECT * FROM member WHERE member_id = #{member_id}
+	</select>
+
+	<select id="findProfilePhoto" parameterType="String" resultType="String">
+		SELECT profile_photo FROM member where member_id=#{member_id}
+	</select>
+	
+	<update id="updateProfilePhoto" parameterType="Member">
+		UPDATE member set
+		profile_photo =#{profile_photo} where member_id=#{member_id}
+	</update>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE member 
+		SET email = #{email}, password = #{password}, age = #{age}, gender = #{gender} 
+		WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 부가기능 : login -->
+	<select id="login" parameterType="Member" resultType="Member">
+		SELECT * FROM member where member_id=#{member_id} and password=#{password}
+	</select>
+
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT member_id 
+		FROM member 
+		WHERE member_id=#{member_id}
+	</select>
+
+	<select id="emailCheck" parameterType="String" resultType="String">
+		SELECT email FROM member where email=#{email}
+	</select>
+
+	<select id="findId" parameterType="String" resultType="String">
+		SELECT
+		member_id FROM member where email=#{email}
+	</select>
+	
+	<select id="findPassword" parameterType="map" resultType="String">
+		SELECT
+		password FROM member where email=#{email} and member_id =#{member_id}
+	</select>
+	
+
+<!-- 부가기능 : interestingTag -->
+	<insert id="createInterestingTag" parameterType = "InterestingTag">
+		INSERT INTO interesting_tag (interesting_tag_id, interesting_tag_rank, member_id) VALUES (interesting_tag_seq.nextval, #{interesting_tag_rank}, #{member_id})
+	</insert>
+	
+	<select id="selectInterestingTag" parameterType="String" resultType="String">
+		SELECT interesting_tag_name FROM interesting_tag WHERE member_id = #{member_id} AND interesting_tag_flag = 1
+	</select>
+	
+	<update id="updateInterestingTag" parameterType="InterestingTag">
+		UPDATE interesting_tag 
+		SET interesting_tag_name = #{interesting_tag_name}, interesting_tag_flag = #{interesting_tag_flag} 
+		WHERE member_id = #{member_id} AND interesting_tag_rank = #{interesting_tag_rank}
+	</update>
+	
+<!-- 부가기능 : Following & Follower -->	
+	<insert id="insertFollowing" parameterType="map">
+		INSERT INTO follow
+		(follow_id, follower_me, following_you)
+		VALUES
+		(follow_seq.nextval, #{follower_me}, #{following_you})
+	</insert>
+	
+	<select id="selectFollowingList" parameterType="String" resultType="Member">
+		SELECT * FROM member WHERE member_id IN (SELECT following_you FROM follow WHERE follower_me = #{member_id})
+	</select>
+	
+	<select id="selectFollowerList" parameterType="String" resultType="Member">
+		SELECT * FROM member WHERE member_id IN (SELECT follower_me FROM follow WHERE following_you = #{member_id})
+	</select>
+	
+	<delete id="deleteFollowing" parameterType="map">
+		DELETE FROM follow where follower_me=#{follower_me} and following_you=#{following_you}
+	</delete>
+	
+	<select id="checkFollowing" parameterType="map" resultType="Member">
+		SELECT * FROM member WHERE member_id IN (SELECT follower_me FROM follow WHERE following_you = #{following_you} and follower_me=#{follower_me})
+	</select>
+	
+<!-- 부가기능 : 알림 -->
+	<insert id="insertInfo" parameterType="Info">
+		INSERT INTO info VALUES (info_seq.nextval, 
+		<choose>
+			<when test="info_type == 'logComment'">
+				(SELECT member_id FROM log WHERE log_id = #{member_id_me}), 
+			</when>
+			<when test="info_type == 'photoComment'">
+				(SELECT member_id FROM log WHERE log_id = (SELECT log_id FROM photo WHERE photo_id = #{member_id_me})), 	
+			</when>
+			<when test="info_type == 'logLike'">
+				(SELECT member_id FROM log WHERE log_id = #{member_id_me}), 
+			</when>
+			<when test="info_type == 'photoLike'">
+				(SELECT member_id FROM log WHERE log_id = (SELECT log_id FROM photo WHERE photo_id = #{member_id_me})), 
+			</when>
+			<otherwise>
+				#{member_id_me}, 
+			</otherwise>
+		</choose>
+		#{member_id_you}, 0, #{location}, #{info_type})
+	</insert>
+	
+	<select id="selectInfoList" parameterType="String" resultType="Info">
+		SELECT * FROM info WHERE member_id_me = #{member_id} ORDER BY info_id desc
+	</select>
+	
+	<update id="updateInfo" parameterType="int">
+		UPDATE info SET info_check = 1 WHERE info_id = #{info_id}
+	</update>
+	
+</mapper>

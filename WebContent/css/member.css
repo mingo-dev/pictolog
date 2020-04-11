@@ -1,0 +1,534 @@
+@CHARSET "UTF-8";
+
+/* member View Css*/
+
+/* 상단 프로필, user 아이디, 개시글 수 , 팔로우, 팔로워 정보를 표시  */
+
+/*사진과 정보를 표시하는 전체 래이아웃을 잡아주는 css*/
+.member-top {
+	position: relative;
+	margin: 100px auto auto;
+	max-width: 960px;
+	min-width: 680px;
+	height: 200px;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+/* 프로필 사진 영역*/
+.member-profileArea {
+	min-width: 50px;
+	width: 200px;
+	height: 100%;
+	float: left;
+}
+
+.member-profileImg {
+	width: 100%;
+	height: 100%;
+}
+
+/*유저 아이디 값을 감싸는 css*/
+.member-info {
+	float: left;
+	width: 66%;
+	min-width: 450px;
+	height: 200px;
+}
+
+/*user id 글씨 크기 */
+.member-info>h1 {
+	margin-bottom: 40px;
+	margin-left: 40px;
+}
+
+/* 개시글 수 , 팔로우 팔로워를 감싸는 css*/
+.member-count {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 40px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+/*member id 크기 설정*/
+#member_id {
+	width: 200px;
+	display: inline-block;
+}
+
+/* 로그 및 포토의 내용 그리고 검색 드롭박스 영역 
+ * 로그 포토 네비게이션 바 */
+
+/*로그 포토 를 나타내는 전체 컨텐츠를 감싼다.*/
+@media screen and (min-width: 1080px) {
+	.content {
+		margin: auto auto 50px;
+		margin-top: 5%;
+		max-width: 960px;
+		min-width: 680px;
+		position: relative;
+		max-width: 960px;
+	}
+	/*점선 모양의 드롭박스 영역 */
+	.member-dropArea {
+		max-width: 900px;
+		min-width: 200px;
+		height: 200px;
+		border: 5px dashed #8ec1d2;
+		border-radius: 5px;
+		margin: 0 auto;
+		margin-top: 50px;
+		opacity: 0.7;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.content {
+		margin-top: 1%;
+	}
+	.profile {
+		width: 100%;
+		height: 60%;
+		margin-bottom: 15%;
+		margin-left: 1%;
+	}
+	.id_info {
+		margin-left: 20%;
+	}
+	/*점선 모양의 드롭박스 영역 */
+	.member-dropArea {
+		display: none;
+	}
+}
+
+/* navigation search area*/
+.nav-search {
+	margin-top: 80px;
+	height: 80px;
+}
+
+/*네이게이션 전체 부분 */
+.member-nav {
+	margin: 0;
+	width: 20%;
+	font-size: 25px;
+}
+
+.searchInputBox {
+	position: relative;
+	display: inline-block;
+	border: 0px !important;
+	width: 90%;
+}
+
+.searchBtnBox {
+	position: relative;
+	width: 10%;
+	height: 100%;
+	float: right;
+}
+
+/* 검색 부분 글씨 크기와 모양을 잡아준다. */
+.search-text {
+	width: 100%;
+	border: 0px !important;
+	background-color: #cfe5ec;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+/*버튼 모양 css*/
+.member_buttonCSS {
+	background-color: #ffffff;
+	font-weight: bold;
+	color: #91a9d5;
+}
+
+.search-button {
+	width: 80px;
+	height: 34px;
+	border-radius: 0px 5px 5px 0px;
+}
+
+/* search bar 와 button 래이아웃을 잡아준다. */
+.search-area {
+	float: left;
+	width: 55%;
+	height: 55px;
+	padding: 10px;
+}
+
+/*드롭 박스*/
+
+/*마우스 롤 오버 */
+.member-dropArea:hover {
+	opacity: 1;
+}
+
+/*아이콘을 드롭박스 내부 영역 크기로 조절해 주는 css*/
+.member_icon {
+	width: 20%;
+	height: 45%;
+	margin-top: 6%;
+	margin-left: 40%;
+}
+
+/* 배경 사진을 고정된 상태로 스크롤시 움직이게 하는 css*/
+/* 로그 사진을 스크롤에 고정시는 css*/
+.Parallax {
+	position: relative;
+	opacity: 0.85;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* 로그 마우스 롤 오버 */
+.Parallax:hover {
+	opacity: 1;
+}
+
+/* 네비게이션바와 로그, 포토의 영역을 나누어준다.
+로그 및 포토 영역
+*/
+
+/* 네이게이션 바와 view 영역을 나누어 준다. 로그와 포토가 동시에 들어간다 */
+.member-view {
+	border: 1px solid rgba(78, 78, 78, 0.23);
+	border-top: none;
+	margin: 0;
+	position: relative;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	top: -23.5px;
+}
+
+/* 로그 영역 css*/
+.member-log {
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.member-logView {
+	margin-left: 30px;
+	margin-right: 30px;
+	text-align: center;
+}
+
+/*포토 영역 css*/
+.member-photo {
+	width: 100%;
+	height: auto;
+}
+
+.member-photoView {
+	margin-left: 30px;
+	margin-right: 30px;
+	text-align: center;
+}
+
+.member-photoTitle {
+	margin-top: 80px;
+}
+
+.member-photoTag {
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+input[type="text"] {
+	border: 0;
+}
+
+/* 사진의 경우 로그 이외에 섬네일 맵핑이 필요하다.
+ * 사진을 각각의 div로 묶어서 사진의 크기를 일정한 크기로 맞춘다.
+ * 가로 세로 길이가 넘어가는 사진은 삭제한다. (비율 유지 17:11)
+*/
+
+/*각각의 사진은 썸네일 형태로 div안에 들어가도록 설정된다. */
+.member-thumbnail-div {
+	width: 176px;
+	padding: 0px;
+	margin: 1px;
+	height: 110px;
+	overflow: hidden;
+	/* float:left; */
+}
+
+/* 이미지가 들어가는 div*/
+.member-thumbnail {
+	width: 100%;
+	height: 110px;
+}
+
+/* 전체 thumbnail을 감싸는 css*/
+.row {
+	padding: 0px;
+	width: 100%;
+	margin: 0px;
+}
+
+/* bootstrap 좌우 크기 조절 padding border 값 재조정 css*/
+.col-xs-6 {
+	padding: 0 !important;
+	border-radius: 0 !important;
+}
+/* bootstrap thumbnail 제공 css. margin padding 재조정, 마우르 롤 오버 */
+.thumbnail {
+	margin-bottom: 0 !important;
+	padding: 0 !important;
+	opacity: 0.80;
+}
+
+/* 마우스 롤 오버 */
+.thumbnail:hover {
+	opacity: 1;
+}
+
+/*로그 안에 좋아요 댓글 개수*/
+.infoBox {
+	color: #FFFFFF;
+	position: relative;
+	display: inline;
+	width: 0;
+	height: 0;
+	z-index: 100;
+	text-shadow: #000000 1px 1px 1px;
+	left: -43%;
+	top: 230px;
+}
+
+.infoBox_inner {
+	position: relative;
+	display: inline;
+	font-size: 25px;
+	margin-right: 5px;
+}
+
+.count {
+	position: relative;
+	display: inline;
+	text-decoration: none;
+}
+
+/*로그 내부에 들어가는 태그 정렬 */
+.member_logTagList {
+	position: relative;
+	top: 130px;
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
+	text-shadow: #000000 1px 1px 1px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 25px;
+	font-size: 25px;
+}
+
+/*로그 타이틀 글자 */
+.member_logTitle {
+	font-size: 35px;
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.wrap-loading { /*화면 전체를 어둡게*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.2);
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000');
+}
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 40%;
+	left: 43%;
+	margin-left: -21px;
+	margin-top: -21px;
+	z-index: 6;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
+
+/*modal*/
+.photoModal-body {
+	position: relative;
+	height: 600px;
+	overflow-y: auto;
+}
+
+.modal-dialog {
+	overflow-y: initial !important
+}
+
+.likeBtn {
+	position: relative;
+	float: right;
+	font-size: 3em;
+}
+
+.likeBtnImg {
+	width: 40px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+.photoFrame {
+	width: 100%;
+}
+
+.photoImg {
+	width: 80%;
+	position: relative;
+	margin: 5% 10% 5% 10%;
+}
+
+.commentBox {
+	margin: 2%;
+}
+
+.commentProfile {
+	width: 10px !important;
+}
+
+.commentContainer {
+	margin: 2%;
+}
+
+.comment {
+	display: block;
+	margin-left: 10%;
+	font-size: 1.2em;
+}
+
+.commentButtons {
+	float: right;
+}
+
+.profile_img {
+	width: 50px;
+	height: 50px;
+}
+
+.profileIcon {
+	float: left;
+	width: 10%;
+}
+
+.commentProfile {
+	width: 10px !important;
+}
+
+.photoCommentInput {
+	width: 100%;
+	border: 0px !important;
+	color: #FFFFFF;
+	background-color: #cfe5ec;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	font-weight: bold;
+}
+
+.photoCommentInputBox {
+	position: relative;
+	display: inline-block;
+	border: 0px !important;
+	width: 90%;
+}
+
+.photoCommentSubmitBox {
+	position: relative;
+	width: 10%;
+	height: 100%;
+	float: right;
+}
+
+.photoCommentSubmit {
+	width: 100%;
+	height: 34px;
+	border-radius: 0px 5px 5px 0px;
+	background-color: #f7cac9;
+	font-weight: bold;
+}
+/*팔로잉, 팔로워 modal  */
+@media screen and (min-width: 1080px) {
+	#follow-modal-content {
+		position: relative;
+		height: 70%;
+		width: 35%;
+		overflow-y: auto;
+		margin-left: 35%;
+		margin-top: 20%;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	#follow-modal-content {
+		position: relative;
+		height: 50%;
+		width: 70%;
+		overflow-y: auto;
+		margin-left: 17%;
+		margin-top: 25%;
+	}
+}
+
+#followProfile {
+	width: 80px;
+	height: 80px;
+}
+
+.followTable {
+	display: table;
+	width: auto;
+	border: 1px solid #d9ebf0;
+	border-right: none;
+	border-spacing: 5px;
+}
+
+.followTableRow {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+
+.followTableCol {
+	float: left;
+	display: table-column;
+	width: 270px;
+	font-size: 20px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.photoModal-title {
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+/* 태그 길이 변형을 위해 임시로 생성하는 class들 : 지우지 말 것! */
+.input-tag-element {
+	border: 0;
+	padding: 2px;
+	background: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.tmp-element {
+	visibility: hidden;
+	white-space: pre;
+}

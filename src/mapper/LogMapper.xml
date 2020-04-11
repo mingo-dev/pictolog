@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LogMapper">
+<!-- Log -->
+	<insert id="insertLog" parameterType="Log">
+		INSERT INTO log (log_id, member_id)
+		VALUES(#{log_id}, #{member_id})
+	</insert>
+
+	<select id="selectLog" parameterType="String" resultType="LogView">
+		SELECT * FROM log WHERE log_id=#{log_id}
+	</select>
+	
+	<update id="updateLog" parameterType="Log">
+		UPDATE log SET  log_title = #{log_title}, main_photo_name = #{main_photo_name}, log_tag_name_first = #{log_tag_name_first}
+		WHERE log_id=#{log_id}
+	</update>
+	
+	<update id="updateLogTitle" parameterType="LogView">
+		UPDATE log SET log_title = #{log_title} WHERE log_id=#{log_id}
+	</update>
+	
+	<delete id="deleteLog" parameterType="String">
+		DELETE FROM log 
+		WHERE log_id=#{log_id}
+	</delete>
+	
+	<update id="makeLogPublic" parameterType="Log">
+		UPDATE log set
+		log_public=#{log_public}
+	</update>
+	
+<!-- LogComment -->
+	<insert id="insertLogComment" parameterType="LogComment">
+		INSERT INTO log_comment
+		VALUES(log_comment_seq.nextval, #{log_comm_text}, #{member_id}, #{log_id}, SYSDATE)
+	</insert>
+	
+	<select id="selectLogCommentList" parameterType="String" resultType="LogComment">
+		SELECT * FROM log_comment WHERE log_id = #{log_id} ORDER BY log_comm_regdate desc
+	</select>
+	
+	<delete id="deleteLogComment" parameterType="LogComment">
+		DELETE FROM log_comment
+		WHERE log_comm_id=#{log_comm_id}
+	</delete>
+	
+<!-- LogTag -->
+	<insert id="insertLogTag" parameterType="LogTag">
+		INSERT INTO log_tag
+		VALUES (log_tag_seq.nextval, #{log_tag_name}, #{log_id}, #{member_id}, #{log_tag_rank})
+	</insert>
+
+	<select id="selectLogTagList" parameterType="String" resultType="LogTag">
+		SELECT * FROM log_tag WHERE log_id = #{log_id}
+	</select>
+	
+	<update id="updateLogTag" parameterType="LogTag">
+		UPDATE log_tag SET log_tag_name =#{log_tag_name} WHERE log_tag_id=#{log_tag_id}
+	</update>
+	
+	<update id="updateLogTagList" parameterType="LogTag">
+		UPDATE log_tag set
+		log_tag_name =#{log_tag_name} where log_id=#{log_id} and log_tag_rank = #{log_tag_rank}
+	</update>
+	
+<!-- LogLike -->
+	<insert id="insertLogLike" parameterType="map">
+		INSERT INTO log_like
+		VALUES(log_like_seq.nextval, #{member_id}, #{log_id})
+	</insert>
+	
+	<select id="selectLogLikeCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM log_like WHERE log_id = #{log_id}
+	</select>
+	
+	<select id="selectLogLikeList" parameterType="String" resultType="LogLike">
+		SELECT * FROM log_like WHERE log_id = #{log_id}
+	</select>
+	
+	<update id="addLogLikeCount" parameterType="int">
+		UPDATE log SET photo_total_like_count = photo_total_like_count +1
+		WHERE log_id = (SELECT log_id FROM photo WHERE photo_id = #{photo_id})
+	</update>
+	
+	<update id="substractLogLikeCount" parameterType="int">
+		UPDATE log SET photo_total_like_count = photo_total_like_count - 1
+		WHERE log_id = (SELECT log_id FROM photo WHERE photo_id = #{photo_id})
+	</update>
+	
+	<delete id="deleteLogLike" parameterType="map">
+		DELETE FROM log_like
+		WHERE member_id =#{member_id} and log_id=#{log_id}
+	</delete>
+
+</mapper>

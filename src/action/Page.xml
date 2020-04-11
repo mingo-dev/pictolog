@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="page" namespace="/" extends="default, json-default">
+    	
+    	<!-- 로그뷰 페이지에서 logData 가져오는 Ajax action -->
+    	<action name="readLogData" class="pictolog.ajaxAction.LogViewAction" method="readLogData">
+    		<result name="success" type="json"/>
+    		<result name="ERROR" type="json"/>
+    	</action>
+    	
+    	<!-- 메인페이지에서 로그 불러오는 Ajax action -->
+    	<action name="mainPageLogLoad" class="pictolog.ajaxAction.PageAjaxAction" method="mainPageLogLoad">
+    		<interceptor-ref name="LoginInterceptorStack"/>
+    		<result name="success" type="json"/>
+    		<result name="error" type="json"/>
+    	</action>
+    	
+    	<!-- 개인페이지에서 일단 logData와 기본 정보를 가져오는 Ajax action  -->
+		<action name="memberPageLoad" class="pictolog.ajaxAction.PageAjaxAction" method="memberPageView">
+			<result type="json"></result>
+		</action>
+    	
+    	<!-- 개인페이지에서 LOG 버튼을 클릭하여 로그를 호출한다.  Ajax -->
+		<action name="logViewButton" class="pictolog.ajaxAction.PageAjaxAction" method="memberPageLogAjax">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 개인페이지에서 PHOTO 버튼을 클릭하여 포토 정보를 호출한다.  Ajax  -->
+		<action name="photoViewButton" class="pictolog.ajaxAction.PageAjaxAction" method="memberPagePhotoAjax">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 검색 : 로그/ 포토 -->
+    	<action name="searchLogByTag" class="pictolog.ajaxAction.PageAjaxAction" method="searchLogByTag">
+			<result type="json"></result>
+		</action>
+		
+		<action name="searchPhotoByTag" class="pictolog.ajaxAction.PageAjaxAction" method="searchPhotoByTag">
+			<result type="json"></result>
+		</action>
+	 
+	 	<!-- 검색 : 로그/ 포토 (멤버뷰용) -->
+	 	<action name="searchLogByTagForMemberView" class="pictolog.ajaxAction.PageAjaxAction" method="searchLogByTagForMemberView">
+			<result type="json"></result>
+		</action>
+		
+		<action name="searchPhotoByTagForMemberView" class="pictolog.ajaxAction.PageAjaxAction" method="searchPhotoByTagForMemberView">
+			<result type="json"></result>
+		</action>
+	 	
+	</package>
+</struts>

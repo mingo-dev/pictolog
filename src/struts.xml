@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="LoginInterceptor" class="pictolog.interceptor.LoginInterceptor" />
+			<interceptor-stack name="LoginInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="LoginInterceptor" />
+			</interceptor-stack>
+		
+			<interceptor name="MainPageInterceptor" class="pictolog.interceptor.MainPageInterceptor" />
+			<interceptor-stack name="MainPageInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="MainPageInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-action-ref name="loginForm" />
+		
+		<global-results>
+			<result name="login" type="redirect">/loginForm.action</result>
+			<result name="error" type="redirect">/pictolog.action</result>
+			<result name="login_m" type="redirect">/loginForm_m.action</result>
+		</global-results>
+	
+		<!-- 로그인 & 회원 가입 페이지 이동 -->
+		<action name="loginForm">
+			<interceptor-ref name="MainPageInterceptorStack"/>
+			<result>/login.jsp</result>
+		</action>
+		
+		<action name="login_m">
+			<result>/login_m.jsp</result>
+		</action>
+		
+		<!-- 아이디 비밀번호 찾기 화면 이동 -->
+		<action name="findIdPw">
+			<result>/findIdPw.jsp</result>
+		</action>
+
+		<!-- 메인(픽토로그) 화면 이동 -->
+		<action name="pictolog">
+			<interceptor-ref name="LoginInterceptorStack"/>
+			<result>/pictolog.jsp</result>
+		</action>
+		
+		<!-- 로그뷰 화면 이동 -->
+		<action name="logView" class="pictolog.action.StrutsAction" method="logView">
+   			<interceptor-ref name="LoginInterceptorStack"/>
+   			<result>/logView.jsp</result>
+   		</action>
+		
+		<!-- 계정 설정 페이지 이동 -->
+		<action name="memberSetting" class = "pictolog.action.StrutsAction" method = "memberSetting">
+       		<interceptor-ref name="LoginInterceptorStack"/>
+       		<result>/memberSetting.jsp</result>
+       	</action>
+       	
+       	<!-- 개인페이지(멤버뷰) 화면 이동 -->
+       	<action name="memberPageView" class="pictolog.action.StrutsAction" method="memberGo">
+       		<interceptor-ref name="LoginInterceptorStack"/>
+       		<result name="success">/memberView.jsp</result>
+       	</action>
+       	
+		<!-- 검색 페이지 이동 -->
+		<action name="searchResult" class="pictolog.action.StrutsAction" method="searchResult">
+			<interceptor-ref name="LoginInterceptorStack"/>
+			<result name="success">/searchResult.jsp</result>
+		</action>
+
+	</package>
+
+	<include file="action/Member.xml" />
+	<include file="action/Log.xml" />
+	<include file="action/Page.xml" />
+	<include file="action/Photo.xml" />
+	
+</struts>

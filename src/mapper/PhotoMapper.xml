@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PhotoMapper">
+	
+<!-- Photo -->
+	<insert id="insertPhoto" parameterType="Photo">
+		INSERT INTO photo (photo_id, 
+		<if test="exif_location != null">exif_location,</if>
+		<if test="exif_time != null">exif_time,</if>
+		log_id, photo_name
+		<if test="photo_path != null">,photo_path</if>)
+		VALUES (photo_seq.nextval, 
+		<if test="exif_location != null">#{exif_location},</if>
+		<if test="exif_time != null">#{exif_time},</if>
+		#{log_id}, #{photo_name}
+		<if test="photo_path != null">,#{photo_path}</if>)
+	</insert>
+
+	<select id="selectPhoto" parameterType="int" resultType="Photo">
+		SELECT * FROM photo where photo_id = #{photo_id}
+	</select>
+
+	<select id="selectPhotoList" parameterType="String" resultType="Photo">
+		SELECT * FROM photo WHERE log_id = #{log_id} ORDER BY exif_time
+	</select>
+
+	<update id="alterPhotoLocation" parameterType="Photo">
+		UPDATE photo SET exif_location =#{exif_location} WHERE photo_id=#{photo_id}
+	</update>
+	
+	<delete id="deletePhoto" parameterType="int">
+		DELETE photo where photo_id =#{photo_id}
+	</delete>
+	
+<!-- PhotoComment -->
+	<insert id="insertPhotoComment" parameterType="PHOTOCOMMENT">
+		INSERT INTO photo_comment VALUES (photo_comment_seq.nextval, #{photo_comm_text}, #{member_id}, #{photo_id}, sysdate)
+	</insert>
+
+	<select id="selectPhotoCommentList" parameterType="int" resultType="PhotoComment">
+		SELECT * FROM photo_comment where photo_id = #{photo_id} ORDER BY photo_comm_regdate
+	</select>	
+
+	<delete id="deletePhotoComment" parameterType="int">
+		DELETE photo_comment WHERE photo_comm_id = #{photo_comm_id}
+	</delete>
+
+<!-- PhotoTag -->
+	<insert id="insertPhotoTag" parameterType="PhotoTag">
+		INSERT INTO photo_tag
+		(photo_tag_id, photo_tag_name, member_id, photo_id)
+		 VALUES (photo_tag_seq.nextval, #{photo_tag_name}, #{member_id}, #{photo_id})
+	</insert>
+	
+	<select id="selectPhotoTagList" parameterType="int" resultType="PhotoTag">
+		SELECT * FROM photo_tag where photo_id = #{photo_id} ORDER BY photo_tag_id
+	</select>
+	
+	<select id="selectPhotoTagListOfMember" parameterType="String" resultType="String">
+		SELECT photo_tag_name FROM photo_tag WHERE member_id = #{member_id}
+	</select>
+	
+	<update id="updatePhotoTag" parameterType="PhotoTag">
+		UPDATE photo_tag SET photo_tag_name = #{photo_tag_name} WHERE photo_tag_id = #{photo_tag_id}
+	</update>
+	
+<!-- PhotoLike -->
+	<insert id="insertPhotoLike" parameterType="PHOTOLIKE">
+		INSERT INTO photo_like VALUES (photo_like_seq.nextval, #{member_id}, #{photo_id})
+	</insert>
+
+	<select id="selectPhotoLikeList" parameterType="int" resultType="PhotoLike">
+		SELECT  * FROM photo_like where photo_id = #{photo_id} ORDER BY photo_like_id
+	</select>
+	
+	<update id="addPhotoLikeCount" parameterType="int">
+		UPDATE photo SET photo_like_count = photo_like_count + 1 WHERE photo_id =#{photo_id}
+	</update>
+
+	<delete id="deletePhotoLike" parameterType="int">
+		DELETE photo_like WHERE photo_id = #{photo_id}
+	</delete>
+
+	<update id="substractPhotoLikeCount" parameterType="int">
+		UPDATE photo SET photo_like_count = photo_like_count - 1 WHERE photo_id =#{photo_id}
+	</update>
+	
+	<select id="selectPhotoPath" parameterType="int" resultType="String">
+		SELECT photo_path FROM photo where photo_id =#{photo_id}
+	</select>
+
+<!-- 부가기능 : 알림 -->
+	<select id="selectLogId" parameterType="int" resultType="String">
+		SELECT log_id FROM photo WHERE photo_id = #{photo_id}
+	</select>
+
+</mapper>
